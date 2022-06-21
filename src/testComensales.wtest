@@ -2,24 +2,55 @@ import comidas.*
 import comensales.*
 describe "Test de Comensales" {
 	
+	// Comensales
+	
+	const vegetariano = new Vegetariano(peso=68500)
+	
+	const comensalPopular = new HambrePopular(peso=85000)
+	
+	const comensalPaladarFino = new PaladarFino(peso=65000) 
+	
+	// Platos
+	
+	const hamburguesaVegetariana = new HamburguesaVegetariana(legumbre="garbanzos", pan=panMasaMadre)
+	
+	const hamburguesaCarne1 = new HamburguesaDeCarne(pan=panMasaMadre)
+	
+	const hamburguesaCarne2 = new HamburguesaDeCarne(pan=panCasero)
+	
+	const provoleta = new Provoleta(peso=190, tieneEspecias=true)
+	
+	const parrillada = new Parrillada()
+	
+	const asado = new Corte(nombre="asado", calidad=10, peso=250)
+	const entrania = new Corte(nombre="entrania", calidad=7, peso=200)
+	const chorizo = new Corte(nombre="chorizo", calidad=8, peso=50)
+	
 	method initialize() {
+		vegetariano.comer(provoleta)
+		vegetariano.comer(hamburguesaVegetariana)
+		vegetariano.comer(hamburguesaVegetariana)
 		
+		parrillada.agregarCorte(asado)
+		parrillada.agregarCorte(entrania)
+		parrillada.agregarCorte(chorizo)
+		
+		comensalPopular.comer(parrillada)
 	}
 	
 	test "Vegetariano satisfecho " {
-		assert.that(true)
+		assert.that(vegetariano.estaSatisfecho())
 	}
 
 	test "Popular no satisfecho" {
-		assert.notThat(false)	
+		assert.notThat(comensalPopular.estaSatisfecho())	
 	}	
 	
 	test "Paladar Fino, le agrada Hamburgesa de carne de 250 gramos con pan de masa madre." {
-		assert.that(true)	
+		assert.that(comensalPaladarFino.leAgrada(hamburguesaCarne1))	
 	}
 	
 	test "Paladar No Fino, no le agrada Hamburguesa de carne de 250 gramos con pan casero." {
-		assert.notThat(false)	
+		assert.notThat(comensalPaladarFino.leAgrada(hamburguesaCarne2))	
 	}
-	
 }
