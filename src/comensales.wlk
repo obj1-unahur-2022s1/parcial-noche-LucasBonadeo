@@ -1,3 +1,4 @@
+//Excelente: Sin Errores
 import comidas.*
 
 class Comensal {

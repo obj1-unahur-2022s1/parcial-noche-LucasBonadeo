@@ -1,3 +1,4 @@
+//Excelente Platos: Sin Errores
 class Plato {
 	method peso() 
 	method esAptoVegetariano()
