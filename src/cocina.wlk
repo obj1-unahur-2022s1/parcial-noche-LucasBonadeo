@@ -1,3 +1,4 @@
+//Revisar ajuste en elegirPlatoPara, no era un método para retornar algo
 import comidas.*
 import comensales.*
 
@@ -12,8 +13,13 @@ object cocina {
 	method platoFuerteCarnivoro() = self.comidasNoVegetarianas().max({ c => c.valoracion() })
 	method comidasQueLeGustanA(unComensal) =
 		comidas.filter({ c => unComensal.leAgrada(c) })
-	method elegirPlatoPara(unComensal) =
-		if ( self.comidasQueLeGustanA(unComensal).isEmpty() ) 
-			{ self.error("No le gusta ninguna plato de la cocina") }
-		else { unComensal.comer(self.comidasQueLeGustanA(unComensal).anyOne()) } 
+	method elegirPlatoPara(unComensal) {
+		if ( self.comidasQueLeGustanA(unComensal).isEmpty() ) {
+			self.error("No le gusta ninguna plato de la cocina") 
+		}
+		const comida = self.comidasQueLeGustanA(unComensal).anyOne()
+		unComensal.comer(comida) 
+		comidas.remove(comida)
+	}
+		
 }
